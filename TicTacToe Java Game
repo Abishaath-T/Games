@@ -1,0 +1,1086 @@
+/*
+Name:Abishaath
+Date:10/06/2021
+Purpose: To successfully apply the programming skills that I have learned (If Statements, Repetition Statements, Built in Functions, Arrays) to create a simple and entertaining game of my choice (Tic Tac Toe)
+*/
+
+import java.util.Scanner;
+import java.util.Random; 
+class Main {
+  public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    Random r = new Random();
+
+    //Variables
+      String symbolChoice, name, begin, again=""; 
+      int userNum, cpuNum;
+
+    //Priting out the Title Page
+    System.out.println("\n");
+    System.out.println("\n");
+    System.out.println("   ████████╗██╗ ██████╗    ████████╗ █████╗  ██████╗    ████████╗ ██████╗ ███████╗   ");  
+    System.out.println("   ╚══██╔══╝██║██╔════╝    ╚══██╔══╝██╔══██╗██╔════╝    ╚══██╔══╝██╔═══██╗██╔════╝   ");   
+    System.out.println("      ██║   ██║██║            ██║   ███████║██║            ██║   ██║   ██║█████╗     ");    
+    System.out.println("      ██║   ██║██║            ██║   ██╔══██║██║            ██║   ██║   ██║██╔══╝     ");    
+    System.out.println("      ██║   ██║╚██████╗       ██║   ██║  ██║╚██████╗       ██║   ╚██████╔╝███████╗   ");   
+    System.out.println("      ╚═╝   ╚═╝ ╚═════╝       ╚═╝   ╚═╝  ╚═╝ ╚═════╝       ╚═╝    ╚═════╝ ╚══════╝   ");
+    System.out.println("\n"); 
+
+    //Barrier to make output more neat 
+      System.out.println("-----------------------------------------------------------------------------------");
+      //Asking user if they're ready to begin 
+      System.out.print ("\n🎯  Are you ready to begin🎯  (Yes/No): ");
+      begin = input.next();
+      //Barrier to make output more neat 
+      System.out.println("-----------------------------------------------------------------------------------");                             
+
+      //Decision Statement for if player wants to begin 
+      if (begin.equalsIgnoreCase("Yes")){
+      //Printing out instrucations 
+      System.out.println("\n------------------------------📜 INSTRUCTIONS📜 -----------------------------------");
+      System.out.println("\n💠  The game will commence by requiring you to enter your name, Your winnings or losses will be directly addressed to you this way ");
+      System.out.println("💠  You will be given the option of choosing between the symbols ❌  or ⭕️  , The CPU will use the opposite symbol to the one you choose");
+      System.out.println("💠  Afterwards you will be prompted to enter a number between 1 through 9 to place your symbol on the gameboard, (the numbers increase in value from left to right, so number 1 will be the top left slot and number 3 will be the top right slot)");
+      System.out.println("💠  If you are able to acheive a winning line of 3 in a row before the CPU, you will be congratulated");
+      System.out.println("💠  Otherwise If the CPU is able to acheive a winning line of 3 in a row before you, you loose!");
+      //Barrier to make output more neat 
+      System.out.println("\n-----------------------------------------------------------------------------------");
+
+      //Asking User to enter their Name
+      System.out.print ("\nPlease enter your name 🧍 : ");
+      name = input.next(); 
+
+      //Barrier to make output more neat 
+      System.out.println("\n-----------------------------------------------------------------------------------");
+
+      //Generating game board
+      String[] [] gameBoard = {{"  ", "|", "  ", "|", "  "}, {"--", "|", "--", "|", "--"}, {"  ", "|", "  ", "|", "  "}, {"--", "|", "--", "|", "--"}, {"  ", "|", "  ", "|", "  "}};
+
+      //Printing out game board 
+      for (int x=0; x<5; x++){
+        for (int y=0; y<5; y++){
+          System.out.print(gameBoard[x][y]);
+        }//END of second for loop
+        System.out.println("");
+      }//END of first for loop
+
+      //Asking if user would like X or O as their symbol choice 
+      System.out.print ("\nWould you like to select ❌  or ⭕️  as your symbol of choice: ");
+      symbolChoice = input.next();
+
+      //Decision statement for if user chooses X symbol 
+      if (symbolChoice.equalsIgnoreCase("X")){
+      
+      //Loop to make sure program will run atleast 9 times 
+      for (int l=0; l<=9; l++){
+      //Barrier to make output more neat 
+      System.out.println("\n-----------------------------------------------------------------------------------");
+
+      //Asking for user input for placement number on the board 
+      System.out.print("\nPlease enter a placement number to add your choice to the board (1-9) #️⃣ : ");
+      userNum = input.nextInt();
+
+      //Loop for if user enter a placement number other than 1-9
+      while (userNum != 1 && userNum !=2 && userNum !=3 && userNum !=4 && userNum !=5 && userNum !=6 && userNum !=7 && userNum !=8 && userNum !=9){
+      //Barrier to make output more neat 
+      System.out.println("-----------------------------------------------------------------------------------"); 
+      System.out.print("\nYou have entered an incorrect value, please enter a new value (1-9) ➡️ : ");
+      userNum = input.nextInt();
+      //Barrier to make output more neat 
+      }//END of while loop 
+
+      //changing placement number to X symbol on the board for USER  
+      switch(userNum){
+        case 1:
+          gameBoard [0][0] = "❌ ";
+          break;
+      
+        case 2:
+          gameBoard [0][2] = "❌ ";
+          break;
+        
+        case 3:
+          gameBoard [0][4] = "❌ ";
+          break;
+          
+        case 4:
+          gameBoard [2][0] = "❌ ";
+          break;
+          
+        case 5:
+          gameBoard [2][2] = "❌ ";
+          break;
+          
+        case 6:
+          gameBoard [2][4] = "❌ ";
+          break;
+        
+        case 7:
+          gameBoard [4][0] = "❌ ";
+          break;
+           
+        case 8:
+          gameBoard [4][2] = "❌ ";
+          break;
+
+        case 9:
+          gameBoard [4][4] = "❌";
+          break; 
+      }//END of switch case for USERS input  
+          
+
+      //Generating a random placement number for the CPU
+      cpuNum = r.nextInt(9)+1;
+
+      //changing placement number to O symbol on the board for CPU  
+      if (!gameBoard [0][0].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 1:
+          gameBoard [0][0] = "⭕ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#1) 
+
+      if (!gameBoard [0][2].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 2:
+          gameBoard [0][2] = "⭕️ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#2) 
+
+      if (!gameBoard [0][4].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 3:
+          gameBoard [0][4] = "⭕️ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#3)
+
+      if (!gameBoard [2][0].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 4:
+          gameBoard [2][0] = "⭕️ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#4)
+
+      if (!gameBoard [2][2].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 5:
+          gameBoard [2][2] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#5)
+
+      if (!gameBoard [2][4].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 6:
+          gameBoard [2][4] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#6)
+
+      if (!gameBoard [4][0].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 7:
+          gameBoard [4][0] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#7)
+
+      if (!gameBoard [4][2].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 8:
+          gameBoard [4][2] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#8)
+
+      if (!gameBoard [4][4].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 9:
+          gameBoard [4][4] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#9)
+
+      //Prining out Game Board to show user their selection
+      System.out.println("\n"); 
+      for (int x=0; x<5; x++){
+        for (int y=0; y<5; y++){
+          System.out.print(gameBoard[x][y]);
+        }//END of second for loop
+        System.out.println("");
+      }//END of first for loop
+
+      //Checking for winnings 
+      //ROWS 
+      //Decision Statement for winnings of the TOP row for USER 
+      if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [0][2].equalsIgnoreCase("❌ ") && gameBoard [0][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the TOP row for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [0][2].equalsIgnoreCase("⭕️ ") && gameBoard [0][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the MIDDLE row for USER 
+      if (gameBoard [2][0].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [2][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the MIDDLE row for CPU 
+      else if (gameBoard [2][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [2][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the BOTTOM row for USER 
+      if (gameBoard [4][0].equalsIgnoreCase("❌ ") && gameBoard [4][2].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the BOTTOM row for CPU 
+      else if (gameBoard [4][0].equalsIgnoreCase("⭕️ ") && gameBoard [4][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+
+      //COLUMNS 
+      //Decision Statement for winnings of the LEFT column for USER
+      if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [2][0].equalsIgnoreCase("❌ ") && gameBoard [4][0].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the LEFT column for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][0].equalsIgnoreCase("⭕️ ") && gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the MIDDLE column for USER 
+      if (gameBoard [0][2].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][2].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the MIDDLE column for CPU 
+      else if (gameBoard [0][2].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][2].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the RIGHT column for USER 
+      if (gameBoard [0][4].equalsIgnoreCase("❌ ") && gameBoard [2][4].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the RIGHT column for CPU  
+      else if (gameBoard [0][4].equalsIgnoreCase("⭕️ ") && gameBoard [2][4].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+
+      //DIAGONALS 
+      //Decision Statement for winnings of DIAGONAL 1 for USER 
+      if (gameBoard [0][4].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][0].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of DIAGONAL 1 for CPU 
+      else if (gameBoard [0][4].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of DIAGONAL 2 for USER 
+      if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of DIAGONAL 2 for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;} 
+
+      //Decision Statement for if the User ties 
+      if (userNum ==1 && userNum ==2 && userNum ==3 && userNum ==4 && userNum ==5 && userNum ==6 && userNum ==7 && userNum ==8 && userNum ==9){
+        System.out.println("You have tied the game");
+
+      }//END of if statement for if the USER ties 
+
+      }//END of loop to make sure there is atleast 9 inputs 
+
+      }//END of Loop for if the user chooses the X symbol 
+
+
+      //Decision statement for if user chooses O symbol 
+      if (symbolChoice.equalsIgnoreCase("O")){
+      
+      //Loop to make sure program will run atleast 9 times 
+      for (int j=0; j<=9; j++){
+      //Barrier to make output more neat 
+      System.out.println("\n-----------------------------------------------------------------------------------");
+
+      //Asking for user input for placement number on the board 
+      System.out.print("\nPlease enter a placement number to add your choice to the board (1-9): ");
+      userNum = input.nextInt();
+
+      //Loop for if user enter a placement number other than 1-9
+      while (userNum != 1 && userNum !=2 && userNum !=3 && userNum !=4 && userNum !=5 && userNum !=6 && userNum !=7 && userNum !=8 && userNum !=9){
+      //Barrier to make output more neat 
+      System.out.println("-----------------------------------------------------------------------------------"); 
+      System.out.print("\nYou have entered an incorrect value, please enter a new value (1-9): ");
+      userNum = input.nextInt();
+      //Barrier to make output more neat 
+      }//END of while loop 
+
+      //changing placement number to O symbol on the board for USER  
+      switch(userNum){
+        case 1:
+          gameBoard [0][0] = "⭕️ ";
+          break;
+      
+        case 2:
+          gameBoard [0][2] = "⭕️ ";
+          break;
+        
+        case 3:
+          gameBoard [0][4] = "⭕️ ";
+          break;
+          
+        case 4:
+          gameBoard [2][0] = "⭕️ ";
+          break;
+          
+        case 5:
+          gameBoard [2][2] = "⭕️ ";
+          break;
+          
+        case 6:
+          gameBoard [2][4] = "⭕️ ";
+          break;
+        
+        case 7:
+          gameBoard [4][0] = "⭕️ ";
+          break;
+           
+        case 8:
+          gameBoard [4][2] = "⭕️ ";
+          break;
+
+        case 9:
+          gameBoard [4][4] = "⭕️";
+          break; 
+      }//END of switch case for USERS input  
+          
+          
+      //Generating a random placement number for the CPU
+      cpuNum = r.nextInt(9)+1;
+
+      //changing placement number to X symbol on the board for CPU  
+      if (!gameBoard [0][0].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 1:
+          gameBoard [0][0] = "❌ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#1) 
+
+      if (!gameBoard [0][2].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 2:
+          gameBoard [0][2] = "❌ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#2) 
+
+      if (!gameBoard [0][4].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 3:
+          gameBoard [0][4] = "❌ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#3)
+
+      if (!gameBoard [2][0].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 4:
+          gameBoard [2][0] = "❌ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#4)
+
+      if (!gameBoard [2][2].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 5:
+          gameBoard [2][2] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#5)
+
+      if (!gameBoard [2][4].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 6:
+          gameBoard [2][4] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#6)
+
+      if (!gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 7:
+          gameBoard [4][0] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#7)
+
+      if (!gameBoard [4][2].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 8:
+          gameBoard [4][2] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#8)
+
+      if (!gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 9:
+          gameBoard [4][4] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#9)
+
+      //Prining out Game Board to show user their selection
+      System.out.println("\n"); 
+      for (int x=0; x<5; x++){
+        for (int y=0; y<5; y++){
+          System.out.print(gameBoard[x][y]);
+        }//END of second for loop
+        System.out.println("");
+      }//END of first for loop
+
+      //Checking for winnings 
+      //ROWS 
+      //Decision Statement for winnings of the TOP row for USER 
+      if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [0][2].equalsIgnoreCase("⭕️ ") && gameBoard [0][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the TOP row for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [0][2].equalsIgnoreCase("❌ ") && gameBoard [0][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the MIDDLE row for USER 
+      if (gameBoard [2][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [2][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the MIDDLE row for CPU 
+      else if (gameBoard [2][0].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [2][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the BOTTOM row for USER 
+      if (gameBoard [4][0].equalsIgnoreCase("⭕️ ") && gameBoard [4][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the BOTTOM row for CPU 
+      else if (gameBoard [4][0].equalsIgnoreCase("❌ ") && gameBoard [4][2].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+
+      //COLUMNS 
+      //Decision Statement for winnings of the LEFT column for USER
+      if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][0].equalsIgnoreCase("⭕️ ") && gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the LEFT column for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [2][0].equalsIgnoreCase("❌ ") && gameBoard [4][0].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the MIDDLE column for USER 
+      if (gameBoard [0][2].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][2].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the MIDDLE column for CPU 
+      else if (gameBoard [0][2].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][2].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the RIGHT column for USER 
+      if (gameBoard [0][4].equalsIgnoreCase("⭕️ ") && gameBoard [2][4].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the RIGHT column for CPU  
+      else if (gameBoard [0][4].equalsIgnoreCase("❌ ") && gameBoard [2][4].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+
+      //DIAGONALS 
+      //Decision Statement for winnings of DIAGONAL 1 for USER 
+      if (gameBoard [0][4].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of DIAGONAL 1 for CPU 
+      else if (gameBoard [0][4].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][0].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of DIAGONAL 2 for USER 
+      if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of DIAGONAL 2 for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;} 
+
+      //Decision Statement for if the User ties 
+      if (userNum ==1 && userNum ==2 && userNum ==3 && userNum ==4 && userNum ==5 && userNum ==6 && userNum ==7 && userNum ==8 && userNum ==9){
+        System.out.println("You have tied the game");
+
+      }//END of if statement for if the USER ties 
+
+      }//END of loop to make sure there is atleast 9 inputs 
+
+      }//END of Loop for if the user chooses the O symbol 
+
+
+      }//END of decision statement for if player would like to play 
+
+
+      //Deicision Statement for if user would not like to begin 
+      else {
+        System.out.println("⛔️  We shall not begin!⛔️ , please re-run the program if you happen to change your mind! ");
+      }
+
+      //Asking player if they would like to play again 
+      System.out.print("\n🔄  Would you like to play again?🔄  (Yes/No): ");
+      again = input.next();
+
+
+    while (again.equalsIgnoreCase("Yes")){
+    //Priting out the Title Page
+    System.out.println("\n");
+    System.out.println("\n");
+    System.out.println("   ████████╗██╗ ██████╗    ████████╗ █████╗  ██████╗    ████████╗ ██████╗ ███████╗   ");  
+    System.out.println("   ╚══██╔══╝██║██╔════╝    ╚══██╔══╝██╔══██╗██╔════╝    ╚══██╔══╝██╔═══██╗██╔════╝   ");   
+    System.out.println("      ██║   ██║██║            ██║   ███████║██║            ██║   ██║   ██║█████╗     ");    
+    System.out.println("      ██║   ██║██║            ██║   ██╔══██║██║            ██║   ██║   ██║██╔══╝     ");    
+    System.out.println("      ██║   ██║╚██████╗       ██║   ██║  ██║╚██████╗       ██║   ╚██████╔╝███████╗   ");   
+    System.out.println("      ╚═╝   ╚═╝ ╚═════╝       ╚═╝   ╚═╝  ╚═╝ ╚═════╝       ╚═╝    ╚═════╝ ╚══════╝   ");
+    System.out.println("\n"); 
+
+    //Barrier to make output more neat 
+      System.out.println("-----------------------------------------------------------------------------------");
+      //Asking user if they're ready to begin 
+      System.out.print ("\n🎯  Are you ready to begin🎯  (Yes/No): ");
+      begin = input.next();
+      //Barrier to make output more neat 
+      System.out.println("-----------------------------------------------------------------------------------");                             
+
+      //Decision Statement for if player wants to begin 
+      if (begin.equalsIgnoreCase("Yes")){
+      //Printing out instrucations 
+      System.out.println("\n------------------------------📜 INSTRUCTIONS📜 -----------------------------------");
+      System.out.println("\n💠  The game will commence by requiring you to enter your name, Your winnings or losses will be directly addressed to you this way ");
+      System.out.println("💠  You will be given the option of choosing between the symbols ❌  or ⭕️  , The CPU will use the opposite symbol to the one you choose");
+      System.out.println("💠  Afterwards you will be prompted to enter a number between 1 through 9 to place your symbol on the gameboard, (the numbers increase in value from left to right, so number 1 will be the top left slot and number 3 will be the top right slot)");
+      System.out.println("💠  If you are able to acheive a winning line of 3 in a row before the CPU, you will be congratulated");
+      System.out.println("💠  Otherwise If the CPU is able to acheive a winning line of 3 in a row before you, you loose!");
+      //Barrier to make output more neat 
+      System.out.println("\n-----------------------------------------------------------------------------------");
+
+      //Asking User to enter their Name
+      System.out.print ("\nPlease enter your name 🧍 : ");
+      name = input.next(); 
+
+      //Barrier to make output more neat 
+      System.out.println("\n-----------------------------------------------------------------------------------");
+
+      //Generating game board
+      String[] [] gameBoard = {{"  ", "|", "  ", "|", "  "}, {"--", "|", "--", "|", "--"}, {"  ", "|", "  ", "|", "  "}, {"--", "|", "--", "|", "--"}, {"  ", "|", "  ", "|", "  "}};
+
+      //Printing out game board 
+      for (int x=0; x<5; x++){
+        for (int y=0; y<5; y++){
+          System.out.print(gameBoard[x][y]);
+        }//END of second for loop
+        System.out.println("");
+      }//END of first for loop
+
+      //Asking if user would like X or O as their symbol choice 
+      System.out.print ("\nWould you like to select ❌  or ⭕️  as your symbol of choice: ");
+      symbolChoice = input.next();
+
+      //Decision statement for if user chooses X symbol 
+      if (symbolChoice.equalsIgnoreCase("X")){
+      
+      //Loop to make sure program will run atleast 9 times 
+      for (int l=0; l<=9; l++){
+      //Barrier to make output more neat 
+      System.out.println("\n-----------------------------------------------------------------------------------");
+
+      //Asking for user input for placement number on the board 
+      System.out.print("\nPlease enter a placement number to add your choice to the board (1-9) #️⃣ : ");
+      userNum = input.nextInt();
+
+      //Loop for if user enter a placement number other than 1-9
+      while (userNum != 1 && userNum !=2 && userNum !=3 && userNum !=4 && userNum !=5 && userNum !=6 && userNum !=7 && userNum !=8 && userNum !=9){
+      //Barrier to make output more neat 
+      System.out.println("-----------------------------------------------------------------------------------"); 
+      System.out.print("\nYou have entered an incorrect value, please enter a new value (1-9) ➡️ : ");
+      userNum = input.nextInt();
+      //Barrier to make output more neat 
+      }//END of while loop 
+
+      //changing placement number to X symbol on the board for USER  
+      switch(userNum){
+        case 1:
+          gameBoard [0][0] = "❌ ";
+          break;
+      
+        case 2:
+          gameBoard [0][2] = "❌ ";
+          break;
+        
+        case 3:
+          gameBoard [0][4] = "❌ ";
+          break;
+          
+        case 4:
+          gameBoard [2][0] = "❌ ";
+          break;
+          
+        case 5:
+          gameBoard [2][2] = "❌ ";
+          break;
+          
+        case 6:
+          gameBoard [2][4] = "❌ ";
+          break;
+        
+        case 7:
+          gameBoard [4][0] = "❌ ";
+          break;
+           
+        case 8:
+          gameBoard [4][2] = "❌ ";
+          break;
+
+        case 9:
+          gameBoard [4][4] = "❌";
+          break; 
+      }//END of switch case for USERS input  
+          
+
+      //Generating a random placement number for the CPU
+      cpuNum = r.nextInt(9)+1;
+
+      //changing placement number to O symbol on the board for CPU  
+      if (!gameBoard [0][0].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 1:
+          gameBoard [0][0] = "⭕ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#1) 
+
+      if (!gameBoard [0][2].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 2:
+          gameBoard [0][2] = "⭕️ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#2) 
+
+      if (!gameBoard [0][4].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 3:
+          gameBoard [0][4] = "⭕️ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#3)
+
+      if (!gameBoard [2][0].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 4:
+          gameBoard [2][0] = "⭕️ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#4)
+
+      if (!gameBoard [2][2].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 5:
+          gameBoard [2][2] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#5)
+
+      if (!gameBoard [2][4].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 6:
+          gameBoard [2][4] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#6)
+
+      if (!gameBoard [4][0].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 7:
+          gameBoard [4][0] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#7)
+
+      if (!gameBoard [4][2].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 8:
+          gameBoard [4][2] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#8)
+
+      if (!gameBoard [4][4].equalsIgnoreCase("❌ ")){
+      switch(cpuNum){
+        case 9:
+          gameBoard [4][4] = "⭕️ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#9)
+
+      //Prining out Game Board to show user their selection
+      System.out.println("\n"); 
+      for (int x=0; x<5; x++){
+        for (int y=0; y<5; y++){
+          System.out.print(gameBoard[x][y]);
+        }//END of second for loop
+        System.out.println("");
+      }//END of first for loop
+
+      //Checking for winnings 
+      //ROWS 
+      //Decision Statement for winnings of the TOP row for USER 
+      if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [0][2].equalsIgnoreCase("❌ ") && gameBoard [0][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the TOP row for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [0][2].equalsIgnoreCase("⭕️ ") && gameBoard [0][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the MIDDLE row for USER 
+      if (gameBoard [2][0].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [2][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the MIDDLE row for CPU 
+      else if (gameBoard [2][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [2][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the BOTTOM row for USER 
+      if (gameBoard [4][0].equalsIgnoreCase("❌ ") && gameBoard [4][2].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the BOTTOM row for CPU 
+      else if (gameBoard [4][0].equalsIgnoreCase("⭕️ ") && gameBoard [4][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+
+      //COLUMNS 
+      //Decision Statement for winnings of the LEFT column for USER
+      if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [2][0].equalsIgnoreCase("❌ ") && gameBoard [4][0].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the LEFT column for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][0].equalsIgnoreCase("⭕️ ") && gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the MIDDLE column for USER 
+      if (gameBoard [0][2].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][2].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the MIDDLE column for CPU 
+      else if (gameBoard [0][2].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][2].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the RIGHT column for USER 
+      if (gameBoard [0][4].equalsIgnoreCase("❌ ") && gameBoard [2][4].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the RIGHT column for CPU  
+      else if (gameBoard [0][4].equalsIgnoreCase("⭕️ ") && gameBoard [2][4].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+
+      //DIAGONALS 
+      //Decision Statement for winnings of DIAGONAL 1 for USER 
+      if (gameBoard [0][4].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][0].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of DIAGONAL 1 for CPU 
+      else if (gameBoard [0][4].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of DIAGONAL 2 for USER 
+      if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of DIAGONAL 2 for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;} 
+
+      //Decision Statement for if the User ties 
+      if (userNum ==1 && userNum ==2 && userNum ==3 && userNum ==4 && userNum ==5 && userNum ==6 && userNum ==7 && userNum ==8 && userNum ==9){
+        System.out.println("You have tied the game");
+
+      }//END of if statement for if the USER ties 
+
+      }//END of loop to make sure there is atleast 9 inputs 
+
+      }//END of Loop for if the user chooses the X symbol 
+
+
+      //Decision statement for if user chooses O symbol 
+      if (symbolChoice.equalsIgnoreCase("O")){
+      
+      //Loop to make sure program will run atleast 9 times 
+      for (int j=0; j<=9; j++){
+      //Barrier to make output more neat 
+      System.out.println("\n-----------------------------------------------------------------------------------");
+
+      //Asking for user input for placement number on the board 
+      System.out.print("\nPlease enter a placement number to add your choice to the board (1-9): ");
+      userNum = input.nextInt();
+
+      //Loop for if user enter a placement number other than 1-9
+      while (userNum != 1 && userNum !=2 && userNum !=3 && userNum !=4 && userNum !=5 && userNum !=6 && userNum !=7 && userNum !=8 && userNum !=9){
+      //Barrier to make output more neat 
+      System.out.println("-----------------------------------------------------------------------------------"); 
+      System.out.print("\nYou have entered an incorrect value, please enter a new value (1-9): ");
+      userNum = input.nextInt();
+      //Barrier to make output more neat 
+      }//END of while loop 
+
+      //changing placement number to O symbol on the board for USER  
+      switch(userNum){
+        case 1:
+          gameBoard [0][0] = "⭕️ ";
+          break;
+      
+        case 2:
+          gameBoard [0][2] = "⭕️ ";
+          break;
+        
+        case 3:
+          gameBoard [0][4] = "⭕️ ";
+          break;
+          
+        case 4:
+          gameBoard [2][0] = "⭕️ ";
+          break;
+          
+        case 5:
+          gameBoard [2][2] = "⭕️ ";
+          break;
+          
+        case 6:
+          gameBoard [2][4] = "⭕️ ";
+          break;
+        
+        case 7:
+          gameBoard [4][0] = "⭕️ ";
+          break;
+           
+        case 8:
+          gameBoard [4][2] = "⭕️ ";
+          break;
+
+        case 9:
+          gameBoard [4][4] = "⭕️";
+          break; 
+      }//END of switch case for USERS input  
+          
+          
+      //Generating a random placement number for the CPU
+      cpuNum = r.nextInt(9)+1;
+
+      //changing placement number to X symbol on the board for CPU  
+      if (!gameBoard [0][0].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 1:
+          gameBoard [0][0] = "❌ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#1) 
+
+      if (!gameBoard [0][2].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 2:
+          gameBoard [0][2] = "❌ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#2) 
+
+      if (!gameBoard [0][4].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 3:
+          gameBoard [0][4] = "❌ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#3)
+
+      if (!gameBoard [2][0].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 4:
+          gameBoard [2][0] = "❌ ";
+          break;
+        }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#4)
+
+      if (!gameBoard [2][2].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 5:
+          gameBoard [2][2] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#5)
+
+      if (!gameBoard [2][4].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 6:
+          gameBoard [2][4] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#6)
+
+      if (!gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 7:
+          gameBoard [4][0] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#7)
+
+      if (!gameBoard [4][2].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 8:
+          gameBoard [4][2] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#8)
+
+      if (!gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+      switch(cpuNum){
+        case 9:
+          gameBoard [4][4] = "❌ ";
+          break;
+          }//END of switch case
+      }//END of if statement so CPU doesn't enter an incorrect value (#9)
+
+      //Prining out Game Board to show user their selection
+      System.out.println("\n"); 
+      for (int x=0; x<5; x++){
+        for (int y=0; y<5; y++){
+          System.out.print(gameBoard[x][y]);
+        }//END of second for loop
+        System.out.println("");
+      }//END of first for loop
+
+      //Checking for winnings 
+      //ROWS 
+      //Decision Statement for winnings of the TOP row for USER 
+      if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [0][2].equalsIgnoreCase("⭕️ ") && gameBoard [0][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the TOP row for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [0][2].equalsIgnoreCase("❌ ") && gameBoard [0][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the MIDDLE row for USER 
+      if (gameBoard [2][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [2][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the MIDDLE row for CPU 
+      else if (gameBoard [2][0].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [2][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the BOTTOM row for USER 
+      if (gameBoard [4][0].equalsIgnoreCase("⭕️ ") && gameBoard [4][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the BOTTOM row for CPU 
+      else if (gameBoard [4][0].equalsIgnoreCase("❌ ") && gameBoard [4][2].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+
+      //COLUMNS 
+      //Decision Statement for winnings of the LEFT column for USER
+      if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][0].equalsIgnoreCase("⭕️ ") && gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the LEFT column for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [2][0].equalsIgnoreCase("❌ ") && gameBoard [4][0].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the MIDDLE column for USER 
+      if (gameBoard [0][2].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][2].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the MIDDLE column for CPU 
+      else if (gameBoard [0][2].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][2].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of the RIGHT column for USER 
+      if (gameBoard [0][4].equalsIgnoreCase("⭕️ ") && gameBoard [2][4].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of the RIGHT column for CPU  
+      else if (gameBoard [0][4].equalsIgnoreCase("❌ ") && gameBoard [2][4].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+
+      //DIAGONALS 
+      //Decision Statement for winnings of DIAGONAL 1 for USER 
+      if (gameBoard [0][4].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][0].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of DIAGONAL 1 for CPU 
+      else if (gameBoard [0][4].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][0].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;}
+      
+      //Decision Statement for winnings of DIAGONAL 2 for USER 
+      if (gameBoard [0][0].equalsIgnoreCase("⭕️ ") && gameBoard [2][2].equalsIgnoreCase("⭕️ ") && gameBoard [4][4].equalsIgnoreCase("⭕️ ")){
+        System.out.println("\n🎉 Congratualtions!🎉  " + name + " you have won ✅");
+        break;}
+      //Decision Statement for winnings of DIAGONAL 2 for CPU 
+      else if (gameBoard [0][0].equalsIgnoreCase("❌ ") && gameBoard [2][2].equalsIgnoreCase("❌ ") && gameBoard [4][4].equalsIgnoreCase("❌ ")){
+        System.out.println("\n💢 Unfortunatley!💢  " + name + " you have lost ❎");
+        break;} 
+
+      //Decision Statement for if the User ties 
+      if (userNum ==1 && userNum ==2 && userNum ==3 && userNum ==4 && userNum ==5 && userNum ==6 && userNum ==7 && userNum ==8 && userNum ==9){
+        System.out.println("You have tied the game");
+
+      }//END of if statement for if the USER ties 
+
+      }//END of loop to make sure there is atleast 9 inputs 
+
+      }//END of Loop for if the user chooses the O symbol 
+
+
+      }//END of decision statement for if player would like to play 
+
+
+      //Deicision Statement for if user would not like to begin 
+      else {
+        System.out.println("⛔️  We shall not begin!⛔️ , please re-run the program if you happen to change your mind! ");
+      }
+
+      }//END of while loop for if user would like to play again 
+
+      if (again.equalsIgnoreCase("No")){
+
+      }//END of if statement for if user would not like to play again 
+      
+
+  }//DO NOT DELETE 
+}//DO NOT DELETE 
